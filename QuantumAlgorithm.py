@@ -11,7 +11,7 @@ class QuantumAlgorithm:
     def __init__(self, num_qubits: int) -> None:
         self.num_qubits = num_qubits
         self._noise_model=None
-        self._contructed = False
+        self._constructed = False
         self._simulator = AerSimulator()
         
         
