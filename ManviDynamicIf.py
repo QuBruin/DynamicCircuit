@@ -1,12 +1,12 @@
 import qiskit
 from qiskit_aer import AerSimulator
-from QuantumAlgorithm import  QuantumAlgorithm
+from QuantumAlgorithmV2 import  QuantumAlgorithmV2
 from typing import List
 from QFFT import QFFT_qiskit
 
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
  
-class DyanamicIf(QuantumAlgorithm):
+class DyanamicIf(QuantumAlgorithmV2):
     def __init__(self, num_qubits: int) -> None:
         super().__init__(num_qubits)
 
