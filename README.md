@@ -34,11 +34,11 @@ cd path/to/your/project
 ```
 
 ```console
-python3 -m venv venv
+python3 -m venv yalehack
 ```
 
 ```console
-source venv/bin/activate
+source yalehack/bin/activate
 ```
 
 ```console
