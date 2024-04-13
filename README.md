@@ -10,40 +10,40 @@ This is the repository of 2024 Yale quantum hackthon.
 ## Windows
 
 
-``bash
+```console
 cd path\to\your\project
-``
+```
 
-``bash
+```console
 py -m venv yalehack
-``
+```
 
-``bash
+```console
 yalehack\Scripts\activate
-``
+```
 
-``bash
+```console
 pip install -r requirements.txt
-``
+```
 
 
 ## Linux/Mac
 
-``bash
+```console
 cd path/to/your/project
-``
+```
 
-``bash
+```console
 python3 -m venv venv
-``
+```
 
-``bash
+```console
 source venv/bin/activate
-``
+```
 
-``bash
+```console
 pip install -r requirements.txt
-``
+```
 
 
 
