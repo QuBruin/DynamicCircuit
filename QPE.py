@@ -4,6 +4,8 @@ from qiskit_aer import AerSimulator
 from QuantumAlgorithm import  QuantumAlgorithm
 from typing import List
 from QFFT import QFFT_qiskit
+import numpy as np
+from qiskit.visualization import plot_histogram
 
 
 class QPhe_qiskit(QuantumAlgorithm):
@@ -95,7 +97,7 @@ class QPhe_qiskit(QuantumAlgorithm):
         self._constructed = True
         return
 
-    def compute_result(self):
+    def compute_result(self,shots=1):
         if self._computed:
             return self._result
         if not self._constructed:
@@ -103,7 +105,7 @@ class QPhe_qiskit(QuantumAlgorithm):
 
         compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
         # Execute the circuit on the aer simulator
-        job = self._simulator.run(compiled_circuit, shots=1)
+        job = self._simulator.run(compiled_circuit, shots=shots,noise_model=self._noise_model)
         # Grab results from the job
         result = job.result()
         # Returns counts
@@ -111,3 +113,18 @@ class QPhe_qiskit(QuantumAlgorithm):
         result = list(counts.keys())[0]
         self._result = result
         self._computed = True
+        
+    def show_measure_all(self, shots: int):
+        if not self._constructed:
+            self.construct_circuit()
+
+        compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
+        # Execute the circuit on the aer simulator
+        job = self._simulator.run(compiled_circuit, shots=shots,noise_model=self._noise_model)
+        # Grab results from the job
+        result = job.result()
+        # Returns counts
+        counts = result.get_counts(compiled_circuit)
+        result = list(counts.keys())[0]
+        return plot_histogram(counts)
+    
