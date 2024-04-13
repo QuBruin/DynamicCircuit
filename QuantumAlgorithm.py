@@ -38,12 +38,6 @@ class QuantumAlgorithm:
         counts = result.get_counts(compiled_circuit)
         result = list(counts.keys())[0]
         return plot_histogram(counts)
-    
-    
-    def show_noise_effect(self, shots: int):
-        if not self._constructed:
-            self.construct_circuit()
-        self._compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
 
     def compute_result(self, shots:int):
         if self._ideal_result!=None:
