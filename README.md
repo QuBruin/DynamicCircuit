@@ -1,18 +1,43 @@
 # DynamicCircuit
 This is the repository of 2024 Yale quantum hackthon.
 
-## YML setup with conda
+# Initialize a virtual environment
 
-Use conda to replicate environment from the .yml file
 
-``` 
-conda env create -f environment.yml
+## Windows
+
+
+```console
+cd path\to\your\project
 ```
 
-replace `environment.yml` with the path to the .yml file. Conda will create a new environment based on the specifications in your YAML file.
-
-``` bash
-conda activate my_env
+```console
+py -m venv yalehack
 ```
 
-Use this to activate the conda environment that you just created. Replace `my_env` with the name of your environment.
+```console
+yalehack\Scripts\activate
+```
+
+```console
+pip install -r requirements.txt
+```
+
+
+## Linux/Mac
+
+```console
+cd path/to/your/project
+```
+
+```console
+python3 -m venv yalehack
+```
+
+```console
+source yalehack/bin/activate
+```
+
+```console
+pip install -r requirements.txt
+```
