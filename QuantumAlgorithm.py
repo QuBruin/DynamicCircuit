@@ -11,11 +11,10 @@ class QuantumAlgorithm:
     def __init__(self, num_qubits: int) -> None:
         self.num_qubits = num_qubits
         self._noise_model=None
-        self._contructed = False
+        self._constructed = False
         self._simulator = AerSimulator()
         
         
-
     def construct_circuit(self) -> NotImplementedError:
         raise NotImplementedError("Subclasses must implement construct_circuit method.")
 
@@ -29,8 +28,19 @@ class QuantumAlgorithm:
         raise NotImplementedError("Subclasses must implement compute_result method.")
     
     
-    def show_measure_all(self,shots:int)-> NotImplementedError:
-        raise NotImplementedError("Subclasses must implement show_measure_all method.")
+    def show_measure_all(self, shots: int):
+        if not self._constructed:
+            self.construct_circuit()
+
+        compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
+        # Execute the circuit on the aer simulator
+        job = self._simulator.run(compiled_circuit, shots=shots,noise_model=self._noise_model)
+        # Grab results from the job
+        result = job.result()
+        # Returns counts
+        counts = result.get_counts(compiled_circuit)
+        result = list(counts.keys())[0]
+        return plot_histogram(counts)
     
     
     def show_noise_effect(self, shots: int):

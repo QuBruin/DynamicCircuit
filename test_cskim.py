@@ -11,13 +11,11 @@ class SmallDynamicCircuit(QuantumAlgorithm):
 
     def __init__(self, num_qubits: int, num_cbits: int) -> None:
         super().__init__(num_qubits)
-        self.num_qubits = num_qubits
+        # self.num_qubits = num_qubits
         self.num_cbits = num_cbits
         self.qreg = qiskit.QuantumRegister(num_qubits)
         self.creg = qiskit.ClassicalRegister(num_cbits)
         self._circuit = qiskit.QuantumCircuit(self.qreg, self.creg)
-        self._simulator = AerSimulator()
-        self.constructed = False
         
         self._result = []
 
