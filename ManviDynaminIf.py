@@ -24,6 +24,4 @@ class DyanamicIf(QuantumAlgorithm):
             self._circuit.x(q0)
 
         self._constructed = True
-        
-
-
+    

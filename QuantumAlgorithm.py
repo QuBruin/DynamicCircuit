@@ -10,10 +10,18 @@ class QuantumAlgorithm:
 
     def __init__(self, num_qubits: int) -> None:
         self.num_qubits = num_qubits
+        self._circuit = None
         self._noise_model=None
         self._constructed = False
+        self._compiled_circuit = None
+        self._ideal_result = {}
+        self._noise_result = {}
         self._simulator = AerSimulator()
-        
+
+    
+    @property
+    def circuit(self) -> qiskit.QuantumCircuit:
+        return self._circuit    
         
     def construct_circuit(self) -> NotImplementedError:
         raise NotImplementedError("Subclasses must implement construct_circuit method.")
@@ -24,54 +32,48 @@ class QuantumAlgorithm:
     def set_input(self) -> NotImplementedError:
         raise NotImplementedError("Subclasses must implement set_input method.")
     
-    
-    def show_measure_all(self, shots: int):
-        if not self._constructed:
-            self.construct_circuit()
+    def transpile(self):
+        if self._compiled_circuit != None:
+            return self._compiled_circuit
+        self._compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
 
-        compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
-        # Execute the circuit on the aer simulator
-        job = self._simulator.run(compiled_circuit, shots=shots,noise_model=self._noise_model)
-        # Grab results from the job
-        result = job.result()
-        # Returns counts
-        counts = result.get_counts(compiled_circuit)
-        result = list(counts.keys())[0]
-        return plot_histogram(counts)
 
     def compute_result(self, shots:int):
-        if self._ideal_result!=None:
-            return self._ideal_result
+        if self._ideal_result.get(shots, None) != None:
+            return self._ideal_result.get(shots, None)
         
         self.transpile()
         
         # Execute the circuit on the aer simulator
         job = self._simulator.run(self._compiled_circuit, shots=shots)
 
-        self._ideal_result = job.result()
+        self._ideal_result[shots] = job.result()
+        return self._ideal_result.get(shots, None)
 
     def compute_noise_result(self, shots:int):
-        if self._noise_result != None:
-            return self._noise_result
+        # Return cached results for shots, if already computed
+        if self._noise_result.get(shots, None) != None:
+            return self._noise_result.get(shots, None)
         
         self.transpile()
         
         # Execute the circuit on the aer simulator
         noise_job = self._simulator.run(self._compiled_circuit, shots=shots,noise_model=self._noise_model)
 
-        self._noise_result = noise_job.result()
+        self._noise_result[shots] = noise_job.result()
+        return self._noise_result.get(shots, None)
     
     def show_measure_all(self, shots: int):
         self.compute_result(shots)
-        counts = self._ideal_result.get_counts()
-        return plot_histogram(counts)
+        counts_ideal = self._ideal_result.get(shots, None).get_counts()
+        return plot_histogram(counts_ideal)
     
     def show_noise_effect(self, shots: int):       
         self.compute_result(shots)
         self.compute_noise_result(shots)
 
-        counts_ideal = self._ideal_result.get_counts()
-        counts_noisy = self._noise_result.get_counts()
+        counts_ideal = self._ideal_result.get(shots, None).get_counts()
+        counts_noisy = self._noise_result.get(shots, None).get_counts()
 
         return plot_histogram([counts_noisy, counts_ideal], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect")
     

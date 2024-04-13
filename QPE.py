@@ -37,11 +37,6 @@ class QPhe_qiskit(QuantumAlgorithm):
         self._computed = False
         self._result = []
 
-
-    @property
-    def circuit(self) -> qiskit.QuantumCircuit:
-        return self._circuit
-
     '''
     Set the unitary U
     gatelist: A list of tuples:
