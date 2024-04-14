@@ -94,9 +94,12 @@ We have used the following noise models. For more details, please see the [API D
 
 ## QECCode class
 
-(Stabilizer, noise simulation, benchmark, error thershold simulation, syndrome table(Decoding) )
+The most important class for our quantum error correction package under the help of dynamic circuit support is QECCode class. QECCode can automatically generate syndrome measurement circuit and error correction circuit for users, who only need to specify the stabilizers and the encoding circuit. With QECCode class, the development and comparison between different QEC code is much easier.
+Users can debug the QEC code implementation by add a fack noise and compare the measured result with the syndrome table. User can also use QECCode class the simulate the same QEC code with different code distance to get the error threshold under certain error model.
 
-Following is the example of how to create a 5 qubit code QEC instance by the stabilizers:
+
+
+Following is the example of how to create a 5 qubit code QEC instance by the stabilizers.
 
 ```python
 from QEC.QECCode import QECCode
@@ -116,7 +119,7 @@ qec_code.construct_circuit()
 
 ## Repetition code
 
-We implement the general repetition quantum error correction code and verify it under different types of quantum noise.
+We implement the general repetition quantum error correction code by inherit the QECCode class. We verify it under different types of quantum noise.
 
 <img src="Figures/Repcircuit.png" alt="alt text" width="700"> 
 
@@ -144,6 +147,8 @@ Tthe output of show_syndrome_table() for the above three qubit repetition code i
 
 
 ### Demonstration of repetition code under Bitflip/Phaseflip noise
+
+We demonstrate the effect of repetition code in the following figures.
 
 
 <img src="Figures/Threshold.png" alt="alt text" width="700"> 
