@@ -12,7 +12,7 @@ def generate_evens(n):
     return [i for i in range(2, n-2) if i % 2 == 0]
 
 def generate_evens_input(n):
-    return [i for i in range(10, n-2) if i % 2 == 0]
+    return [i for i in range(6, n-2) if i % 2 == 0]
 
 def generate_odds(n):
     return [i for i in range(1, n, 2)]
@@ -37,7 +37,7 @@ class CNOTCircuit(QuantumAlgorithm):
     # case 2: using swap gate to implement CNOT (only work for even qubits currently)
     # case 3: using dynamic circuits to implement remote CNOT (only work for 7 qubit currently)
     # next step is to generalize to N qubits
-    def construct_circuit(self) :
+    def construct_circuit(self, example = False) :
         qubits = qs.QuantumRegister(self.num_qubits)
         cbits = qs.ClassicalRegister(2)
         qc = qs.QuantumCircuit(qubits, cbits)
@@ -69,7 +69,14 @@ class CNOTCircuit(QuantumAlgorithm):
                 qc.cx(middle - i - 2, middle - i - 1)
                 qc.cx(middle + i, middle + i + 1 )
                 qc.cx(middle + i + 1, middle + i)
-            qc.measure([0, self.num_qubits-1], [0, 1])
+            if example == True:
+                qc.measure(self.num_qubits-1, 0)
+                with qc.if_test((cbits[0],1)):
+                    qc.x(0)
+                qc.measure([0, self.num_qubits-1], [0,1])
+            else:
+                qc.measure([0, self.num_qubits-1], [0,1])
+
         elif self._mode == 'dynamic': 
             qc.h(2)
             qc.h(4)
@@ -98,6 +105,14 @@ class CNOTCircuit(QuantumAlgorithm):
             with qc.if_test((cbits[0], 1)):
                 qc.z(0)
             qc.measure([0, self.num_qubits-1], [0,1])
+            if example == True:
+                qc.measure(self.num_qubits-1, 0)
+                with qc.if_test((cbits[0],1)):
+                    qc.x(0)
+                qc.measure([0, self.num_qubits-1], [0,1])
+            else:
+                qc.measure([0, self.num_qubits-1], [0,1])
+
         elif self._mode == 'dynamic_general' and not is_even(self.num_qubits):
             H_locs_even = generate_evens(self.num_qubits)
             qc.h(H_locs_even)
@@ -127,8 +142,14 @@ class CNOTCircuit(QuantumAlgorithm):
                         qc.z(0)
                     else:
                         qc.x(H_locs_odd[index-1])
+            if example == True:
+                qc.measure(self.num_qubits-1, 0)
+                with qc.if_test((cbits[0],1)):
+                    qc.x(0)
+                qc.measure([0, self.num_qubits-1], [0,1])
+            else:
+                qc.measure([0, self.num_qubits-1], [0,1])
 
-            qc.measure([0, self.num_qubits-1], [0,1])
         elif self._mode == 'dynamic_general' and is_even(self.num_qubits):
             self.num_qubits = self.num_qubits-1
             H_locs_even = generate_evens(self.num_qubits)
@@ -161,32 +182,51 @@ class CNOTCircuit(QuantumAlgorithm):
                         qc.x(H_locs_odd[index-1])
             self.num_qubits = self.num_qubits+1
             qc.cx(self.num_qubits-2, self.num_qubits-1)
-            qc.measure([0, self.num_qubits-1], [0,1])
+            if example == True:
+                qc.measure(self.num_qubits-1, 0)
+                with qc.if_test((cbits[0],1)):
+                    qc.x(0)
+                qc.measure([0, self.num_qubits-1], [0,1])
+            else:
+                qc.measure([0, self.num_qubits-1], [0,1])
 
 
 
         self._circuit = qc
 
-x = list(range(15,28))
+
+x = list(range(6,28))
 x = generate_evens_input(29)
 y_unitary = []
 y_dynamic = []
 shots = 10000
 noise = construct_bitflip_noise_model(0.01,0.01,0.01)
-for value in x:
-    cnot = CNOTCircuit(value, 'dynamic_general')
-    cnot.construct_circuit()
+for _ in range(1):
+    cnot = CNOTCircuit(20, 'dynamic_general')
+    cnot.construct_circuit(example=True)
     cnot.add_noise_model(noise)
-    y_dynamic.append(cnot.calculate_fideility(shots, ['11']))
-    cnot = CNOTCircuit(value, 'unitary')
-    cnot.construct_circuit()
+    y_dynamic.append(cnot.calculate_fideility(shots, ['10']))
+    cnot = CNOTCircuit(20, 'unitary')
+    cnot.construct_circuit(example=True)
     cnot.add_noise_model(noise)
-    y_unitary.append(cnot.calculate_fideility(shots, ['11']))
+    y_unitary.append(cnot.calculate_fideility(shots, ['10']))
+# for value in x:
+#     cnot = CNOTCircuit(value, 'dynamic_general')
+#     cnot.construct_circuit()
+#     cnot.add_noise_model(noise)
+#     y_dynamic.append(cnot.calculate_fideility(shots, ['11']))
+#     cnot = CNOTCircuit(value, 'unitary')
+#     cnot.construct_circuit()
+#     cnot.add_noise_model(noise)
+#     y_unitary.append(cnot.calculate_fideility(shots, ['11']))
 y_unitary = np.array(y_unitary)
 y_dynamic = np.array(y_dynamic)
-plt.plot(x, y_unitary/shots, label = 'unitary')
-plt.plot(x, y_dynamic/shots, label = 'dynamic')
-plt.xlabel('num_of_qubits')
-plt.ylabel('Teleported gate fidelity')
-plt.legend()
-plt.savefig('Remote_CNOT.png', dpi=300)
+x = ['Dynamic', 'Unitary']
+y = [y_dynamic[0]/shots, y_unitary[0]/shots]
+
+plt.bar(x,y)
+
+plt.xlabel("circuit type")
+plt.ylabel("Error correction fideility")
+plt.title("circuit type vs fideility for x error")
+plt.show()
