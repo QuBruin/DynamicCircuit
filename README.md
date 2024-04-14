@@ -5,7 +5,7 @@ We choose the problem provided by IBM, which is one of the leading Company of qu
 dynamic quantum circuit with potential advantage over static ones. In dynamic circuit, we can measure and read the qubit before the next quantum instruction. Such
 flexibility can be used to optimize quantum algorithm design, circuit compilation, as well as error correction. 
 
-During the Hackthon, we mainly focus on quantum remote dynamic CNOT and developing a general quantum error correction class based on qiskit under the support of dynamic circuit.
+During the Hackthon, we mainly focus on quantum remote dynamic CNOT and 2 qubit gates and developing a general quantum error correction class based on qiskit under the support of dynamic circuit.
 We have not only demonstrated the power of dynamic circuit under different types of noise, but also make future QEC development with qiskit easier by designing and implementing a quantum error correction package. 
 
 
