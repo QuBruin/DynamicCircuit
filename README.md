@@ -22,7 +22,7 @@ Please contack us if you are interested.
 
 [UCLA MQST program webpage](https://qst.ucla.edu/)
 
-**Zhuoyang Ye, Qiyu Liu,Changsoo Kim, Manvi, Haocheng wang**
+**Zhuoyang Ye, Qiyu Liu, Changsoo Kim, Manvi, Haocheng wang**
 
 
 
