@@ -35,7 +35,7 @@ All circuit models are designed by inheriting the same classes for user accessib
 **Haocheng wang, Department of Physics and Astronomy, UCLA**
 
 
-Three master's students from the UCLA MQST are currently seeking internships. If you are interested, please feel free to contact us.
+Master's students from the UCLA MQST are currently seeking internships. If you are interested, please feel free to contact us.
 
 [UCLA MQST program webpage](https://qst.ucla.edu/)
 
