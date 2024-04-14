@@ -12,7 +12,7 @@ We have not only demonstrated the power of dynamic circuit under different types
 
 # Team: QuBruin
 
-<img src="Figures/Logo.png" alt="alt text" width="400"> 
+<img src="Figures/Logo.png" alt="alt text" width="800"> 
 This is the logo for our team.
 
 We are three Master students from UCLA MQST project looking for internship right now.
