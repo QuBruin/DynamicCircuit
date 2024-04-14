@@ -76,7 +76,7 @@ class CNOTCircuit(QuantumAlgorithm):
 CNOT = CNOTCircuit(8, 'unitary')
 CNOT.construct_circuit()
 from noise import construct_bitflip_noise_model
-noise_model = construct_bitflip_noise_model(0.01,0.01,0.01)
+noise_model = construct_bitflip_noise_model(0.9,0.9,0.9)
 CNOT.add_noise_model(noise_model)
 CNOT.show_noise_effect(1000)
 plt.show()
