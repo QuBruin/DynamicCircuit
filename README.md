@@ -1,5 +1,13 @@
-# DynamicCircuit
+# Our problem: DynamicCircuit
 This is the repository of 2024 Yale quantum hackthon. We are a team formed by all UCLA student.
+
+We choose the problem provided by IBM, which is one of the leading Company of quantum computing. We are asked to find and implement some application with 
+dynamic quantum circuit with potential advantage over static ones. In dynamic circuit, we can measure and read the qubit before the next quantum instruction. Such
+flexibility can be used to optimize quantum algorithm design, circuit compilation, as well as error correction. 
+
+During the Hackthon, we mainly focus on quantum remote dynamic CNOT and developing a general quantum error correction class based on qiskit under the support of dynamic circuit.
+We have not only demonstrated the power of dynamic circuit under different types of noise, but also make future QEC development with qiskit easier by designing and implementing a quantum error correction package. 
+
 
 
 # Team: QuBruin
@@ -14,57 +22,53 @@ Please contack us if you are interested.
 
 [UCLA MQST program webpage](https://qst.ucla.edu/)
 
-**Zhuoyang Ye, Qiyu Liu**
+**Zhuoyang Ye, Qiyu Liu,Changsoo Kim, Manvi, Haocheng wang**
 
 
 
 # Initialize a virtual environment
 
+You can replicate all our results in this Hackthon on your own computer. Please create a virtual python environment, which we call yalehack, and intall the required package 
+by running the following commands.
 
-## Windows
 
+## For Windows users
 
 ```console
 cd path\to\your\project
-```
-
-```console
 py -m venv yalehack
-```
-
-```console
 yalehack\Scripts\activate
-```
-
-```console
 pip install -r requirements.txt
 ```
 
-
-## Linux/Mac
+## For Linux/Mac users
 
 ```console
 cd path/to/your/project
-```
-
-```console
 python3 -m venv yalehack
-```
-
-```console
 source yalehack/bin/activate
-```
-
-```console
 pip install -r requirements.txt
 ```
 
 
 # Quantum Error correction
 
+Quantum error correction 
+
+
+
 ## Noise model
 
+
+## QECCode class
+
+(Statbilizer, noise simulation, benchmark, error thershold simulation, syndrome table(Decoding) )
+
+
 ## Repetition code
+
+We implement the general repetition quantum error correction code and verify it under different types of quantum noise.
+
 
 
 # Quantum remote dynamic CNOT
