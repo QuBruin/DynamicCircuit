@@ -27,8 +27,15 @@ class phasefliprepetitioncode(QECCode):
         for i in range(physical_qubits-1):
             tmpstring='I'*i+'XX'+ 'I'*(physical_qubits-i-2)
             stabilizerlist.append(tmpstring)
+        self.set_stabilizers(stabilizerlist)
         self._onlybitflip=False
         self._onlyphaseflip=True
+        
+    def construct_encoding_circuit(self):
+        self._circuit.h(list(range(0, self._num_physical_qubits)))
+    
+    def construct_decoding_circuit(self):
+        self._circuit.h(list(range(0, self._num_physical_qubits)))
         
 
     
