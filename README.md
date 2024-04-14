@@ -1,12 +1,18 @@
-# Our problem: DynamicCircuit
-This is the repository of 2024 Yale quantum hackthon. We are a team formed by all UCLA student.
+# YQuantum 2024: DynamicCircuit
 
-We choose the problem provided by IBM, which is one of the leading Company of quantum computing. We are asked to find and implement some application with 
-dynamic quantum circuit with potential advantage over static ones. In dynamic circuit, we can measure and read the qubit before the next quantum instruction. Such
-flexibility can be used to optimize quantum algorithm design, circuit compilation, as well as error correction. 
+This repository is for the 2024 Yale Quantum Hackathon. Our team consists of UCLA students.
 
-During the Hackthon, we mainly focus on quantum remote dynamic CNOT and 2 qubit gates and developing a general quantum error correction class based on qiskit under the support of dynamic circuit.
-We have not only demonstrated the power of dynamic circuit under different types of noise, but also make future QEC development with qiskit easier by designing and implementing a quantum error correction package. 
+Our challenge topic is provided by IBM, a leading company in quantum computing. Our objective was to identify and implement applications using dynamic quantum circuits, which provide advantages over static quantum circuits. Various quantum algorithms, such as quantum algorithm design, circuit compilation, and error correction, can be optimized by leveraging dynamic circuits, where qubits can be measured and read before the next quantum instruction.
+
+We implemented three key demonstrations:
+
+**1. Repetition Code under Bitflip/Phaseflip Noise Quantum**
+
+**2. Quantum Remote Dynamic CNOT**
+
+**3. Dynamic Circuit for Remote 2-Qubit Unitary**
+
+All circuit models are designed by inheriting the same classes for user accessibility. Our work not only demonstrates the power of dynamic circuits under various noise conditions but also facilitates future development of Quantum Dynamic Circuits with Qiskit by providing a quantum circuit and error correction package.
 
 
 
@@ -22,9 +28,15 @@ Please contact us if you are interested.
 
 [UCLA MQST program webpage](https://qst.ucla.edu/)
 
-**Zhuoyang Ye, Qiyu Liu, Changsoo Kim, Manvi Agrawal, Haocheng wang**
+**Zhuoyang Ye, Department of Physics and Astronomy, UCLA**
 
+**Qiyu Liu, Department of Physics and Astronomy, UCLA**
 
+**Changsoo Kim, Computer Science Department, UCLA**
+
+**Manvi Agrawal, Department of Physics and Astronomy, UCLA**
+
+**Haocheng wang, Department of Physics and Astronomy, UCLA**
 
 # Initialize a virtual environment
 
