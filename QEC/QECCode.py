@@ -51,6 +51,8 @@ class QECCode:
         for index in range(0,self._stabilizer_nums):
             self._circuit.reset(self._num_physical_qubits+index)
         self.construct_decoding_circuit()
+        
+        self._circuit.measure(list(range(0, self._num_physical_qubits)), list(range(self._stabilizer_nums, self._num_physical_qubits+self._stabilizer_nums)))
         self._constructed=True
         
         
@@ -117,7 +119,7 @@ class QECCode:
                 self._circuit.h(self._num_physical_qubits+stabilizer_index)
         #Measure the symdrome qubits    
         self._circuit.barrier(qreglist)
-        self._circuit.measure(list(range(self._num_physical_qubits, self._num_physical_qubits+self._stabilizer_nums)), list(range(0,self._stabilizer_nums)))
+        self._circuit.measure(self._num_physical_qubits+stabilizer_index,stabilizer_index)
         
     #Construct the circuit to correct the errors    
     def construct_correction_circuit(self, syndrome:str):
@@ -285,6 +287,7 @@ class QECCode:
     def show_noise_effect(self, shots: int,plot=False, save=False,savepath=None):
         if not self._constructed:
             self.construct_circuit()
+            
 
         compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
         # Execute the noisy circuit on the aer simulator
