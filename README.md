@@ -8,7 +8,7 @@ Our challenge topic is provided by IBM, a leading company in quantum computing. 
 We implemented three key demonstrations:
 <br></br>
 
-**1. Repetition Code under Bitflip/Phaseflip Noise Quantum**
+**1. Repetition Code and five-qubit QEC code under Bitflip/Phaseflip Noise Quantum**
 
 **2. Quantum Remote Dynamic CNOT**
 
