@@ -166,6 +166,16 @@ The encoding circuit of five qubit code is shown as follows:
 <img src="Figures/fivequbitEncode.png" alt="alt text" width="400"> 
 
 
+```python
+from QEC.fivequbitcode import fivequbitcode
+#Initialize a five qubit code example
+fiveqcode=fivequbitcode()
+fiveqcode.set_benchmarkwidth(10)
+fiveqcode.construct_syndrome_table()
+fiveqcode.show_syndrome_table()    
+```
+
+
 <img src="Figures/Threecodephaseflip.png" alt="alt text" width="700"> 
 
 
