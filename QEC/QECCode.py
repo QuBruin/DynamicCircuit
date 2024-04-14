@@ -20,6 +20,8 @@ class QECCode:
         self._simulator = AerSimulator()
         self._onlybitflip=False
         self._onlyphaseflip=False
+        self._mutecorrection=False
+        
         
         self._benchmarkwidth=10
         #self._circuit=qiskit.QuantumCircuit(num_physical_qubits+stabilizer_nums, stabilizer_nums)
@@ -46,8 +48,9 @@ class QECCode:
         self.construct_benchmark_circuit()
         for index in range(0,self._stabilizer_nums):
             self.construct_circuit_stabilizer(self._stabilizers[index],index)
-        for errorsyndrome in self._error_table.keys():
-            self.construct_correction_circuit(errorsyndrome)
+        if not self._mutecorrection:    
+            for errorsyndrome in self._error_table.keys():
+                self.construct_correction_circuit(errorsyndrome)
         for index in range(0,self._stabilizer_nums):
             self._circuit.reset(self._num_physical_qubits+index)
         self.construct_decoding_circuit()
@@ -66,6 +69,9 @@ class QECCode:
         
     def set_benchmarkwidth(self,width:int):
         self._benchmarkwidth=width    
+       
+    def set_mutecorrection(self,mutecorrection:bool):
+        self._mutecorrection=mutecorrection    
         
         
     def construct_benchmark_circuit(self):
@@ -256,9 +262,12 @@ class QECCode:
             elif errorstr[i]=="Z":
                 self._circuit.z(i,label="Fake Z noise")
 
-        
+        '''
         for index in range(0,self._stabilizer_nums):
             self.construct_circuit_stabilizer(self._stabilizers[index],index)
+        '''
+        self.construct_circuit()
+        
         
         compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
         # Execute the circuit on the aer simulator
