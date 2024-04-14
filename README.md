@@ -12,7 +12,7 @@ We have not only demonstrated the power of dynamic circuit under different types
 
 # Team: QuBruin
 
-<img src="Figures/Logo.png" alt="alt text" width="200"> 
+<img src="Figures/Logo.png" alt="alt text" width="400"> 
 This is the logo for our team.
 
 We are three Master students from UCLA MQST project looking for internship right now.
@@ -122,7 +122,18 @@ rep.show_noise_effect(shots=100, save=True,savepath="RepetitionNoise.png")
 
 Tthe output of show_syndrome_table() for the above three qubit repetition code is shown as follows:
 
-<img src="Figures/syndromeoutput.png" alt="alt text" width="200"> 
+<img src="Figures/syndromeoutput.png" alt="alt text" width="400"> 
+
+
+## Demonstration of repetition code
+
+
+<img src="Figures/Threshold.png" alt="alt text" width="700"> 
+
+
+
+<img src="Figures/RepQECDemonstrate.png" alt="alt text" width="700"> 
+
 
 
 # Quantum remote dynamic CNOT
