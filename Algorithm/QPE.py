@@ -114,17 +114,4 @@ class QPhe_qiskit(QuantumAlgorithm):
         self._result = result
         self._computed = True
         
-    def show_measure_all(self, shots: int):
-        if not self._constructed:
-            self.construct_circuit()
-
-        compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
-        # Execute the circuit on the aer simulator
-        job = self._simulator.run(compiled_circuit, shots=shots,noise_model=self._noise_model)
-        # Grab results from the job
-        result = job.result()
-        # Returns counts
-        counts = result.get_counts(compiled_circuit)
-        result = list(counts.keys())[0]
-        return plot_histogram(counts)
     
