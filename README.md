@@ -175,7 +175,7 @@ plt.legend()
 plt.savefig('Remote_CNOT.png', dpi=300)
 ```
 
-# Implementation of Dynamic Circuit for Remote 2-Qubit Unitary
+# Dynamic Circuit for Remote 2-Qubit Unitary
 We introduce an algorithm for implementing remote 2-qubit unitary operations using dynamic circuits. Using quantum teleportation, we move states between adjacent qubits with one CNOT gate and one dynamic operation. Our approach reduces the number of CNOT gates by 33% compared to traditional SWAP-based implementation.
 
 ## Structure
