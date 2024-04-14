@@ -325,9 +325,9 @@ class QECCode:
         #print(fidelity)
         if plot:
             if save:
-                plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect", filename=savepath)
+                plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], figsize=(12, 8),title="Show noise effect", filename=savepath)
             else:
-                plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect")
+                plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], figsize=(12, 8),title="Show noise effect")
         return fidelity
         
         

@@ -2,8 +2,7 @@
 from Algorithm.QPE import QPhe_qiskit
 from qiskit.circuit.library.standard_gates import HGate
 from QEC.QECCode import QECCode
-from noise import construct_bitflip_noise_model,construct_phaseflip_noise_model
-
+from Algorithm.noise import construct_bitflip_noise_model,construct_phaseflip_noise_model
 
 
 
@@ -35,8 +34,9 @@ if __name__ == '__main__':
     
     #qec_code.test_stabilizer_circuit(errorstr="XI",stabstr="XZ",stabindex=0)
     
+    
     from QEC.repetition import bitfliprepetitioncode
-    rep=bitfliprepetitioncode(5)
+    rep=bitfliprepetitioncode(3)
     noisemode=construct_bitflip_noise_model(0.01,0.01,0.01)
     rep.construct_syndrome_table()
     rep.show_syndrome_table()    
