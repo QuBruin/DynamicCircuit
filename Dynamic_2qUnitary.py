@@ -158,20 +158,3 @@ class Dynamic2Q(QuantumAlgorithmV2):
         counts_noisy = self._noise_result[shots]
 
         return plot_histogram([counts_noisy, counts_ideal], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect")
-
-# """
-# test included
-# """
-
-# n = 5
-# sd = SmallDynamicCircuit(n, n)
-
-# nbin = int('{:b}'.format((2 ** n) - 1), 2)
-
-# sd.construct_circuit(nbin)
-# sd.compute_result()
-
-# print("\n\nSmall Dynamic Circuit until measuring '1' * n.")
-# print("n is", n)
-# print(sd._result)
-# print("\n")
