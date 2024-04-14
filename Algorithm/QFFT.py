@@ -1,4 +1,4 @@
-from QuantumAlgorithm import  QuantumAlgorithm
+from .QuantumAlgorithm import  QuantumAlgorithm
 import qiskit
 from qiskit_aer import AerSimulator
 from qiskit.circuit.library.standard_gates import HGate, U1Gate

@@ -1,9 +1,9 @@
 #This is the python file for iterative QPE algorithm
 import qiskit
 from qiskit_aer import AerSimulator
-from QuantumAlgorithm import  QuantumAlgorithm
+from .QuantumAlgorithm import  QuantumAlgorithm
 from typing import List
-from QFFT import QFFT_qiskit
+from .QFFT import QFFT_qiskit
 import numpy as np
 from qiskit.visualization import plot_histogram
 
