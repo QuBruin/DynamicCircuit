@@ -40,6 +40,17 @@ class QECCode:
             self.construct_correction_circuit(errorsyndrome)
             
         
+    def construct_fake_noise_circuit(self):
+        for key in self._fake_noise.keys():
+            if self._fake_noise[key]=="X":
+                self._circuit.x(key[1],label="Fake X noise")
+            elif self._fake_noise[key]=="Z":
+                self._circuit.z(key[1],label="Fake Z noise")    
+        
+        
+    @property
+    def circuit(self) -> qiskit.QuantumCircuit:
+        return self._circuit
     
     def tanner_graph(self):
         raise NotImplementedError("Subclasses must implement tanner_graph method.")
@@ -149,6 +160,41 @@ class QECCode:
             return True
         else:
             return False
+        
+    
+    
+    def test_stabilizer_circuit(self,errorstr:str,stabstr:str,stabindex:int):
+        self._circuit.clear()       
+        for i in range(0,len(errorstr)):
+            if errorstr[i]=="X":
+                self._circuit.x(i,label="Fake X noise")
+            elif errorstr[i]=="Z":
+                self._circuit.z(i,label="Fake Z noise")
+
+   
+        self.construct_circuit_stabilizer(stabstr,stabindex)
+        
+        compiled_circuit = qiskit.transpile(self._circuit, self._simulator)
+        # Execute the circuit on the aer simulator
+        job = self._simulator.run(compiled_circuit, shots=1,noise_model=self._noise_model)
+        # Grab results from the job
+        result = job.result()
+        # Returns counts
+        counts = result.get_counts(compiled_circuit)
+        result = list(counts.keys())[0]
+
+        print("The result is: "+result)
+        
+        
+        print("The expected rsult is "+self._symdrome_table[errorstr])
+        
+        plot_histogram(counts)
+        
+        
+        
+        
+        
+        
         
         
         

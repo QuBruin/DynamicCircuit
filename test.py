@@ -22,13 +22,18 @@ if __name__ == '__main__':
     #qec_code.construct_syndrome_table()
     #qec_code.show_syndrome_table()
     
-    from QEC.QECCode import QECCode
+    #from QEC.QECCode import QECCode
 
     qec_code=QECCode(2,2,5)
         
     qec_code.set_stabilizers(["XZ","IX"])
     qec_code.construct_syndrome_table()
     qec_code.show_syndrome_table()
+    
+    #qec_code.construct_circuit_stabilizer("XZ",0)
+    #qec_code.construct_correction_circuit("10")
+    
+    qec_code.test_stabilizer_circuit(errorstr="XI",stabstr="XZ",stabindex=0)
     
     
     
