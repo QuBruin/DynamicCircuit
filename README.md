@@ -143,7 +143,7 @@ Tthe output of show_syndrome_table() for the above three qubit repetition code i
 <img src="Figures/syndromeoutput.png" alt="alt text" width="400"> 
 
 
-## Demonstration of repetition code under Bitflip/Phaseflip noise
+### Demonstration of repetition code under Bitflip/Phaseflip noise
 
 
 <img src="Figures/Threshold.png" alt="alt text" width="700"> 
@@ -156,6 +156,23 @@ Tthe output of show_syndrome_table() for the above three qubit repetition code i
 <img src="Figures/RepQECDemonstrate.png" alt="alt text" width="700"> 
 
 <img src="Figures/RepQECDemonstratePhase.png" alt="alt text" width="700"> 
+
+## Five qubit code
+
+We also implement the five qubit code and compare the performance with five qubit bit repetition code and five qubit phase repetition code.
+
+The encoding circuit of five qubit code is shown as follows:
+
+<img src="Figures/fivequbitEncode.png" alt="alt text" width="400"> 
+
+
+<img src="Figures/Threecodephaseflip.png" alt="alt text" width="700"> 
+
+
+<img src="Figures/Threecodebitflip.png" alt="alt text" width="700"> 
+
+
+<img src="Figures/Threecodebitphaseflip.png" alt="alt text" width="700"> 
 
 
 # Quantum remote dynamic CNOT
