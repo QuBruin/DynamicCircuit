@@ -117,7 +117,7 @@ class QECCode:
                 self._circuit.h(self._num_physical_qubits+stabilizer_index)
         #Measure the symdrome qubits    
         self._circuit.barrier(qreglist)
-        self._circuit.measure(list(range(0, self._num_physical_qubits)), list(range(self._stabilizer_nums,self._num_physical_qubits+self._stabilizer_nums)))
+        self._circuit.measure(list(range(self._num_physical_qubits, self._num_physical_qubits+self._stabilizer_nums)), list(range(0,self._stabilizer_nums)))
         
     #Construct the circuit to correct the errors    
     def construct_correction_circuit(self, syndrome:str):
