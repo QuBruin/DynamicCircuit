@@ -71,10 +71,13 @@ We follow the seperate three stages of developing a unified quantum error corret
 
 ## Noise model  
 We have used the following noise models. For more details, please see the [API Documentation](https://docs.quantum.ibm.com/api/qiskit/0.24/qiskit.providers.aer.noise.NoiseModel)
-- Bit Flip noise model : `construct_bitflip_noise_model(p_reset, p_meas, p_gate1)`
-- Phase Flip noise model : `construct_phaseflip_noise_model(p_reset, p_meas, p_gate1)`
-- Depolarizing noise model : `construct_depolarizing_noise_model(p_single, p_twoq)`
-- Thermal noise model : `construct_thermal_noise_model(T1, T2):`
+- Bit Flip noise model : Use `construct_bitflip_noise_model(p_reset, p_meas, p_gate1)` to construct a noise model representing bit flip(s).
+- Phase Flip noise model : Use `construct_phaseflip_noise_model(p_reset, p_meas, p_gate1)` to construct a noise model representing bit flip(s).
+- Depolarizing noise model : Use `construct_depolarizing_noise_model(p_single, p_twoq)` to construct a noise model representing depolarising noise channel.
+- Thermal noise model : Use `construct_thermal_noise_model(T1, T2)` to construct a noise model representing thermal errors(s).
+
+> To see things in action, refer to the examples below.
+
 
 ## QECCode class
 
