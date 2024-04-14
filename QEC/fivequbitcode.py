@@ -7,44 +7,49 @@ class fivequbitcode(QECCode):
         super().__init__(physical_qubits,4,2)
         self.set_stabilizers(["XZZXI","IXZZX","XIXZZ","ZXIXZ"])
 
-      
+     #https://quantumcomputing.stackexchange.com/questions/14264/nielsenchuang-5-qubit-quantum-error-correction-encoding-gate 
     def construct_encoding_circuit(self):
-        self._circuit.z(0)
+        self._circuit.h(0)
+        self._circuit.h(1)
         self._circuit.h(2)
         self._circuit.h(3)
-        self._circuit.sdg(0)
+        self._circuit.z(4)
+        
+        self._circuit.cx(0,4)
+        self._circuit.cx(1,4)
         self._circuit.cx(2,4)
-        self._circuit.cx(3,1)
-        self._circuit.h(1)
         self._circuit.cx(3,4)
-        self._circuit.cx(1,0)
-        self._circuit.sdg(2)
-        self._circuit.s(3)
-        self._circuit.sdg(4)
-        self._circuit.s(0)
-        self._circuit.s(1)
-        self._circuit.z(2)
-        self._circuit.cx(4,0)
-        self._circuit.h(4)
+        
+        self._circuit.cz(0,4)
+        self._circuit.cz(0,1)
+        self._circuit.cz(2,3)
+        self._circuit.cz(1,2)
+        self._circuit.cz(3,4)
+        
+        qreglist = list(range(0, self._num_physical_qubits+self._stabilizer_nums))
+        self._circuit.barrier(qreglist)
+        
+        
         
         
     def construct_decoding_circuit(self):
-        self._circuit.h(4)
-        self._circuit.cx(4,0)
-        self._circuit.z(2)
-        self._circuit.s(1)
-        self._circuit.sdg(0)
-        self._circuit.s(4)
-        self._circuit.sdg(3)
-        self._circuit.s(2)
-        self._circuit.cx(1,0)
+        qreglist = list(range(0, self._num_physical_qubits+self._stabilizer_nums))
+        self._circuit.barrier(qreglist)
+        self._circuit.cz(3,4)
+        self._circuit.cz(1,2)
+        self._circuit.cz(2,3)
+        self._circuit.cz(0,1)
+        self._circuit.cz(0,4)
+        
         self._circuit.cx(3,4)
-        self._circuit.h(1)
-        self._circuit.cx(3,1)
         self._circuit.cx(2,4)
-        self._circuit.s(0)
+        self._circuit.cx(1,4)
+        self._circuit.cx(0,4)
+        
+        self._circuit.z(4)
         self._circuit.h(3)
         self._circuit.h(2)
-        self._circuit.z(0)
+        self._circuit.h(1)
+        self._circuit.h(0)
         
         

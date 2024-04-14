@@ -77,9 +77,9 @@ class QECCode:
     def construct_benchmark_circuit(self):
         for i in range(0,self._benchmarkwidth):
             for qindex in range(self._num_physical_qubits):
-                self._circuit.h(qindex)
+                self._circuit.t(qindex)
                 self._circuit.barrier(qindex)
-                self._circuit.h(qindex)
+                self._circuit.tdg(qindex)
                 self._circuit.barrier(qindex)
 
         
@@ -315,7 +315,7 @@ class QECCode:
         # Returns accurate counts
         counts = result.get_counts(compiled_circuit)
         result = list(counts.keys())[0]        
-        #print(counts_noisy)
+        print(counts_noisy)
         
         success=0
         for key in counts_noisy.keys():
