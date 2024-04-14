@@ -53,8 +53,20 @@ pip install -r requirements.txt
 
 # Quantum Error correction
 
-Quantum error correction 
+Quantum error correction is essential in developming a scalabale quantum computer. Although there already exists many candidate for the practical QEC code such as torus code, surface code, qldpc code, we lack a software support for understanding, simulating, and compiling different QEC code. The support of dynamic circuit in qiskit promise a bright future of developing all QEC code by qiskit, because all QEC cycle need dynamical instructions such as syndrome measurement and error correction. 
 
+We follow the seperate three stages of developing a unified quantum error corretion package with dynamic circuit:
+
+1. Develop the support of different noise model using qiskit
+2. Use stabilizer format to unify the representation of different error correction code.
+3. Design the interface carefully and implement the QECCode class, which can be initlized by stabilizer string format.
+4. Implement look up table method to do the syndrome decoding.
+5. Implement the scalable circuit construction for all syndrome measurement.
+6. Implement the scalable circuit construction for all error correction steps.
+7. Test the correctness of implementation by add fake noise.
+8. Add noise model to the QECcode class
+9. Compare the fidelity with and without noise, to demonstrate the effect of QECcode.
+10. Inherit the base QECcode class, we impelement the repetition code class and five qubit code class. 
 
 
 ## Noise model  
