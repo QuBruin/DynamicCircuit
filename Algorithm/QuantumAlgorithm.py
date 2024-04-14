@@ -11,6 +11,7 @@ class QuantumAlgorithm:
     def __init__(self, num_qubits: int) -> None:
         self.num_qubits = num_qubits
         self._noise_model=None
+        self._circuit=None
         self._constructed = False
         self._simulator = AerSimulator()
         
@@ -72,6 +73,17 @@ class QuantumAlgorithm:
     
     def add_noise_model(self,noisemodel:NoiseModel):
         self._noise_model=noisemodel
+        
+        
+    def get_gate_nums(self):
+        pass
+    
+    def get_circuit_depth(self):
+        pass
+    
+    
+        
+    
         
         
         
