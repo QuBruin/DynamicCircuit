@@ -224,7 +224,7 @@ circuit.show_noise_effect(1000)
 
 # Reference
 
-[1] A. D. Córcoles, Maika Takita, Ken Inoue, Scott Lekuch, Zlatko K. Minev, Jerry M. Chow, and Jay M. Gambetta Phys. Rev. Lett. 127, 100501 – Published 31 August 2021
+[1] A. D. Córcoles, Maika Takita, Ken Inoue, Scott Lekuch, Zlatko K. Minev, Jerry M. Chow, and Jay M. Gambetta Phys. Rev. Lett. 127, 100501
 
 [2] E.Baumer, V.Tripathi, D.S.Wang, P.Rall, E.H.Chen, S.Majumder, A.Seif and Z.K.Minev, Efficient Long-Range Entanglement using Dynamic Circuits, arXiv:2308.13065 [quant-ph].
 
