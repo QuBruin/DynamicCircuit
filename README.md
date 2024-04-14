@@ -230,5 +230,7 @@ circuit.show_noise_effect(1000)
 
 [3] L. C. G. Govia, P. Jurcevic, S. T. Merkel, and D. C. McKay. 2022. A randomized benchmarking suite for mid-circuit measurements. https://doi.org/10.48550/ARXIV.2207.04836
 
+[4] Bäumer, E., Tripathi, V., Wang, D. S., Rall, P., Chen, E. H., Majumder, S., ... & Minev, Z. K. (2023). Efficient long-range entanglement using dynamic circuits. arXiv preprint arXiv:2308.13065.
+
 
 
