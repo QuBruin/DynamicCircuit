@@ -11,10 +11,16 @@ from typing import List
 class QECCode:
     
     
+<<<<<<< HEAD
     def __init__(self, num_physical_qubits: int, stabilizer_nums: int,distance:int) -> None:
         self._num_physical_qubits = num_physical_qubits
         self._stabilizer_nums = stabilizer_nums
         self._distance=distance
+=======
+    def __init__(self, num_physical_qubits: int, stabilizer_nums: int) -> None:
+        self._num_physical_qubits = num_physical_qubits
+        self._stabilizer_nums = stabilizer_nums
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
         self._noise_model=None
         self._constructed = False
         self._simulator = AerSimulator()
@@ -22,7 +28,10 @@ class QECCode:
         self._stabilizers=[]
         self._fake_noise={}
         self._symdrome_table={}
+<<<<<<< HEAD
         self._error_table={}
+=======
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
         
            
     def construct_circuit(self) -> NotImplementedError:
@@ -38,6 +47,7 @@ class QECCode:
     def decode(self,syndrome):
         raise NotImplementedError("Subclasses must implement decode method.")
     
+<<<<<<< HEAD
     
     #Add the syndrome measurement circuit.
     def construct_circuit_stabilizer(self,stabilizer:str):
@@ -63,17 +73,23 @@ class QECCode:
         
         
 
+=======
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
     def construct_syndrome_table(self):
         num_errors = 3 ** self._num_physical_qubits
         for i in range(num_errors):
             errorstr = ""
+<<<<<<< HEAD
             tmpdistance=0
+=======
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
             num = i
             for _ in range(self._num_physical_qubits):
                 remainder = num % 3
                 if remainder == 0:
                     errorstr = 'I' + errorstr
                 elif remainder == 1:
+<<<<<<< HEAD
                     tmpdistance+=1
                     errorstr = 'X' + errorstr
                 else:
@@ -84,15 +100,26 @@ class QECCode:
             #The code can only detect error with distance less than or equal to self._distance 
             if tmpdistance>self._distance:
                 continue
+=======
+                    errorstr = 'X' + errorstr
+                else:
+                    errorstr = 'Z' + errorstr
+                num //= 3
+            syndromestr = "" 
+            
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
             for stbindex in range(self._stabilizer_nums):
                 if self.commute(self._stabilizers[stbindex],errorstr):
                     syndromestr+="0"
                 else:
                     syndromestr+="1"
             self._symdrome_table[errorstr]=syndromestr
+<<<<<<< HEAD
             if syndromestr in self._error_table.keys():
                 assert False
             self._error_table[syndromestr]=errorstr
+=======
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
              
     
     def show_syndrome_table(self):

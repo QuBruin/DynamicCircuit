@@ -12,9 +12,14 @@ class fivequbitcode(QECCode):
         
 
         
+<<<<<<< HEAD
     def construct_circuit(self):
         self.construct_syndrome_table()
         
+=======
+    def construct_circuit(self) -> NotImplementedError:
+        raise NotImplementedError("Subclasses must implement construct_circuit method.")
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
     
     
     
@@ -29,7 +34,10 @@ class fivequbitcode(QECCode):
                 self._circuit.h(index+len(stabilizer))
         
         
+<<<<<<< HEAD
     #Construct the circuit to correct the errors    
+=======
+>>>>>>> 47b832a80c1cad44937a6420299ac74f8fd7ad39
     def construct_correct_circuit(self, syndrome:str):
         
         pass
