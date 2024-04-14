@@ -1,4 +1,4 @@
-from QECCode import QECCode
+from .QECCode import QECCode
 
 
 class fivequbitcode(QECCode):
