@@ -21,13 +21,6 @@ All circuit models are designed by inheriting the same classes for user accessib
 <img src="Figures/Logo.png" alt="alt text" width="800"> 
 This is the logo for our team.
 
-We are three Master students from UCLA MQST project looking for internship right now.
-
-Please contact us if you are interested.
-
-
-[UCLA MQST program webpage](https://qst.ucla.edu/)
-
 **Zhuoyang Ye, Department of Physics and Astronomy, UCLA**
 
 **Qiyu Liu, Department of Physics and Astronomy, UCLA**
@@ -37,6 +30,11 @@ Please contact us if you are interested.
 **Manvi Agrawal, Department of Physics and Astronomy, UCLA**
 
 **Haocheng wang, Department of Physics and Astronomy, UCLA**
+
+
+Three master's students from the UCLA MQST project are currently seeking internships. If you are interested, please feel free to contact us.
+
+[UCLA MQST program webpage](https://qst.ucla.edu/)
 
 # Initialize a virtual environment
 
