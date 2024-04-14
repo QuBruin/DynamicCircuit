@@ -81,6 +81,22 @@ We have used the following noise models. For more details, please see the [API D
 
 (Statbilizer, noise simulation, benchmark, error thershold simulation, syndrome table(Decoding) )
 
+Following is the example of how to create a 5 qubit code QEC instance by the stabilizers:
+
+```python
+from QEC.QECCode import QECCode
+
+#(5,4,2) means there are 5 physical qubit, 4 stabilizers and the code distance is 2
+qec_code=QECCode(5,4,2)
+# Initialize the stabilizer
+qec_code.set_stabilizers(["XZZXI","IXZZX","XIXZZ","ZXIXZ"])
+# Construct the syndrome table for error decoding
+qec_code.construct_syndrome_table()
+qec_code.show_syndrome_table()
+# Construct the syndrome measurement circuit and error correction circuit automatically
+qec_code.construct_circuit()
+```
+
 
 ## Repetition code
 
