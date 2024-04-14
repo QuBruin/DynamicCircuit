@@ -1,5 +1,7 @@
 # DynamicCircuit
-This is the repository of 2024 Yale quantum hackthon.
+This is the repository of 2024 Yale quantum hackthon. We are a team formed by all UCLA student.
+
+
 
 # Initialize a virtual environment
 
@@ -41,3 +43,22 @@ source yalehack/bin/activate
 ```console
 pip install -r requirements.txt
 ```
+
+
+# Quantum Error correction
+
+## Noise model
+
+## Repetition code
+
+
+# Quantum remote dynamic CNOT
+
+
+
+# Reference
+
+
+
+
+
