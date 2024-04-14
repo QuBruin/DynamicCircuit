@@ -2,7 +2,7 @@ import qiskit
 from qiskit_aer import AerSimulator
 from QuantumAlgorithmV2 import  QuantumAlgorithmV2
 from typing import List
-from QFFT import QFFT_qiskit
+from Algorithm.QFFT import QFFT_qiskit
 
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
  
