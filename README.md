@@ -103,6 +103,9 @@ qec_code.construct_circuit()
 
 We implement the general repetition quantum error correction code and verify it under different types of quantum noise.
 
+<img src="Figures/Repcircuit.png" alt="alt text" width="700"> 
+
+
 
 ```python
 from QEC.repetition import bitfliprepetitioncode
@@ -125,15 +128,19 @@ Tthe output of show_syndrome_table() for the above three qubit repetition code i
 <img src="Figures/syndromeoutput.png" alt="alt text" width="400"> 
 
 
-## Demonstration of repetition code
+## Demonstration of repetition code under Bitflip/Phaseflip noise
 
 
 <img src="Figures/Threshold.png" alt="alt text" width="700"> 
+
+<img src="Figures/ThresholdPhase.png" alt="alt text" width="700"> 
+
 
 
 
 <img src="Figures/RepQECDemonstrate.png" alt="alt text" width="700"> 
 
+<img src="Figures/RepQECDemonstratePhase.png" alt="alt text" width="700"> 
 
 
 # Quantum remote dynamic CNOT
