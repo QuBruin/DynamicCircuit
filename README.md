@@ -57,7 +57,12 @@ Quantum error correction
 
 
 
-## Noise model
+## Noise model  
+We have used the following noise models. For more details, please see the [API Documentation](https://docs.quantum.ibm.com/api/qiskit/0.24/qiskit.providers.aer.noise.NoiseModel)
+- Bit Flip noise model
+- Phase Flip noise model
+- Depolarizing noise model
+- Thermal noise model
 
 
 ## QECCode class
