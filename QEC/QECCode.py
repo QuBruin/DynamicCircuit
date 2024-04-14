@@ -20,6 +20,8 @@ class QECCode:
         self._simulator = AerSimulator()
         self._onlybitflip=False
         self._onlyphaseflip=False
+        
+        self._benchmarkwidth=10
         #self._circuit=qiskit.QuantumCircuit(num_physical_qubits+stabilizer_nums, stabilizer_nums)
         
         self._dataqubits= QuantumRegister(num_physical_qubits, 'Data qubit')
@@ -41,7 +43,7 @@ class QECCode:
         #print("Constructing!")
         #self._circuit.x(0)
         self.construct_encoding_circuit()
-        #self.construct_benchmark_circuit()
+        self.construct_benchmark_circuit()
         for index in range(0,self._stabilizer_nums):
             self.construct_circuit_stabilizer(self._stabilizers[index],index)
         for errorsyndrome in self._error_table.keys():
@@ -60,17 +62,18 @@ class QECCode:
                 self._circuit.z(key[1],label="Fake Z noise")    
         
         
+    def set_benchmarkwidth(self,width:int):
+        self._benchmarkwidth=width    
+        
+        
     def construct_benchmark_circuit(self):
-        for i in range(0,50):
+        for i in range(0,self._benchmarkwidth):
             for qindex in range(self._num_physical_qubits):
                 self._circuit.h(qindex)
                 self._circuit.barrier(qindex)
-                self._circuit.x(qindex)
-                self._circuit.barrier(qindex)
-                self._circuit.x(qindex)
-                self._circuit.barrier(qindex)
                 self._circuit.h(qindex)
-        
+                self._circuit.barrier(qindex)
+
         
         
     @property
@@ -167,7 +170,7 @@ class QECCode:
                 continue            
             syndromestr = ""
             #The code can only detect error with distance less than or equal to self._distance 
-            print("Error: "+errorstr+" distance is "+str(tmpdistance)+" self._distance is "+str(self._distance))            
+            #print("Error: "+errorstr+" distance is "+str(tmpdistance)+" self._distance is "+str(self._distance))            
             
             if tmpdistance>self._distance:
                 continue
