@@ -2,10 +2,17 @@ from qiskit.pulse import num_qubits
 import matplotlib.pyplot as plt
 from QuantumAlgorithm import QuantumAlgorithm
 import qiskit as qs
-from noise import construct_bitflip_noise_model
+from noise import construct_bitflip_noise_model, construct_phaseflip_noise_model, depolarizing_error
+from noise import thermal_relaxation_error
+import scienceplots
+import numpy as np
+plt.style.use(['science', 'notebook', 'grid'])
 
 def generate_evens(n):
     return [i for i in range(2, n-2) if i % 2 == 0]
+
+def generate_evens_input(n):
+    return [i for i in range(10, n-2) if i % 2 == 0]
 
 def generate_odds(n):
     return [i for i in range(1, n, 2)]
@@ -35,7 +42,7 @@ class CNOTCircuit(QuantumAlgorithm):
         cbits = qs.ClassicalRegister(2)
         qc = qs.QuantumCircuit(qubits, cbits)
         middle = int(self.num_qubits/2)
-        qc.h(0)
+        qc.x(0)
         qc.barrier()
         # simple cx on the first and last qubit
         if self._mode == 'simple':
@@ -43,26 +50,26 @@ class CNOTCircuit(QuantumAlgorithm):
             # unitary swap to implement cx on first and last qubit
             qc.measure([0, self.num_qubits-1], [0, 1])
         elif self._mode == 'unitary':
-            for i in range(self.num_qubits-1):
-                qc.cx(i, i+1)
-            for i in range(self.num_qubits-2):
-                qc.cx(self.num_qubits-i - 3, self.num_qubits-i-2)
-            qc.barrier()
-            qc.measure([0, self.num_qubits-1], [0, 1])
-            # for i in range(int(self.num_qubits/2-1)):
+            # for i in range(self.num_qubits-1):
             #     qc.cx(i, i+1)
-            #     qc.cx(i+1, i)
-            #     qc.cx(self.num_qubits-i-1, self.num_qubits-i-2)
-            #     qc.cx(self.num_qubits-i-2, self.num_qubits-i-1)
+            # for i in range(self.num_qubits-2):
+            #     qc.cx(self.num_qubits-i - 3, self.num_qubits-i-2)
             # qc.barrier()
-            # qc.cx(middle-1, middle)
-            # qc.barrier()
-            # for i in range(int(self.num_qubits/2-1)):
-            #     qc.cx(middle - i - 1, middle - i - 2)
-            #     qc.cx(middle - i - 2, middle - i - 1)
-            #     qc.cx(middle + i, middle + i + 1 )
-            #     qc.cx(middle + i + 1, middle + i)
             # qc.measure([0, self.num_qubits-1], [0, 1])
+            for i in range(int(self.num_qubits/2-1)):
+                qc.cx(i, i+1)
+                qc.cx(i+1, i)
+                qc.cx(self.num_qubits-i-1, self.num_qubits-i-2)
+                qc.cx(self.num_qubits-i-2, self.num_qubits-i-1)
+            qc.barrier()
+            qc.cx(middle-1, middle)
+            qc.barrier()
+            for i in range(int(self.num_qubits/2-1)):
+                qc.cx(middle - i - 1, middle - i - 2)
+                qc.cx(middle - i - 2, middle - i - 1)
+                qc.cx(middle + i, middle + i + 1 )
+                qc.cx(middle + i + 1, middle + i)
+            qc.measure([0, self.num_qubits-1], [0, 1])
         elif self._mode == 'dynamic': 
             qc.h(2)
             qc.h(4)
@@ -160,19 +167,26 @@ class CNOTCircuit(QuantumAlgorithm):
 
         self._circuit = qc
 
-
-#
-cnot = CNOTCircuit(18, 'dynamic_general')
-# cnot_dynamic = CNOTCircuit(7, 'dynamic')
-# cnot_dynamic.construct_circuit()
-cnot.construct_circuit()
-# cnot._circuit.draw(output='mpl')
-# plt.show()
-# cnot._circuit.draw(output='mpl')
-# noise_model = construct_bitflip_noise_model(0.01,0.01,0.01)
-# cnot.add_noise_model(noise_model)
-# cnot.show_noise_effect(10000)
-# cnot_dynamic.add_noise_model(noise_model)
-# cnot_dynamic.show_noise_effect(10000)
-cnot.show_measure_all(1000)
-plt.show()
+x = list(range(15,28))
+x = generate_evens_input(29)
+y_unitary = []
+y_dynamic = []
+shots = 10000
+noise = construct_bitflip_noise_model(0.01,0.01,0.01)
+for value in x:
+    cnot = CNOTCircuit(value, 'dynamic_general')
+    cnot.construct_circuit()
+    cnot.add_noise_model(noise)
+    y_dynamic.append(cnot.calculate_fideility(shots, ['11']))
+    cnot = CNOTCircuit(value, 'unitary')
+    cnot.construct_circuit()
+    cnot.add_noise_model(noise)
+    y_unitary.append(cnot.calculate_fideility(shots, ['11']))
+y_unitary = np.array(y_unitary)
+y_dynamic = np.array(y_dynamic)
+plt.plot(x, y_unitary/shots, label = 'unitary')
+plt.plot(x, y_dynamic/shots, label = 'dynamic')
+plt.xlabel('num_of_qubits')
+plt.ylabel('Teleported gate fidelity')
+plt.legend()
+plt.savefig('Remote_CNOT.png', dpi=300)
