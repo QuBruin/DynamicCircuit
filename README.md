@@ -2,6 +2,21 @@
 This is the repository of 2024 Yale quantum hackthon. We are a team formed by all UCLA student.
 
 
+# Team: QuBruin
+
+<img src="Figures/Logo.png" alt="alt text" width="200"> 
+This is the logo for our team.
+
+We are three Master students from UCLA MQST project looking for internship right now.
+
+Please contack us if you are interested.
+
+
+[UCLA MQST program webpage](https://qst.ucla.edu/)
+
+**Zhuoyang Ye, Qiyu Liu**
+
+
 
 # Initialize a virtual environment
 
