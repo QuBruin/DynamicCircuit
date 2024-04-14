@@ -2,6 +2,7 @@ from qiskit.pulse import num_qubits
 import matplotlib.pyplot as plt
 from QuantumAlgorithm import QuantumAlgorithm
 import qiskit as qs
+from noise import construct_bitflip_noise_model
 
 
 class CNOTCircuit(QuantumAlgorithm):
@@ -27,20 +28,26 @@ class CNOTCircuit(QuantumAlgorithm):
             # unitary swap to implement cx on first and last qubit
             qc.measure([0, self.num_qubits-1], [0, 1])
         elif self._mode == 'unitary':
-            for i in range(int(self.num_qubits/2-1)):
+            for i in range(self.num_qubits-1):
                 qc.cx(i, i+1)
-                qc.cx(i+1, i)
-                qc.cx(self.num_qubits-i-1, self.num_qubits-i-2)
-                qc.cx(self.num_qubits-i-2, self.num_qubits-i-1)
+            for i in range(self.num_qubits-2):
+                qc.cx(self.num_qubits-i - 3, self.num_qubits-i-2)
             qc.barrier()
-            qc.cx(middle-1, middle)
-            qc.barrier()
-            for i in range(int(self.num_qubits/2-1)):
-                qc.cx(middle - i - 1, middle - i - 2)
-                qc.cx(middle - i - 2, middle - i - 1)
-                qc.cx(middle + i, middle + i + 1 )
-                qc.cx(middle + i + 1, middle + i)
             qc.measure([0, self.num_qubits-1], [0, 1])
+            # for i in range(int(self.num_qubits/2-1)):
+            #     qc.cx(i, i+1)
+            #     qc.cx(i+1, i)
+            #     qc.cx(self.num_qubits-i-1, self.num_qubits-i-2)
+            #     qc.cx(self.num_qubits-i-2, self.num_qubits-i-1)
+            # qc.barrier()
+            # qc.cx(middle-1, middle)
+            # qc.barrier()
+            # for i in range(int(self.num_qubits/2-1)):
+            #     qc.cx(middle - i - 1, middle - i - 2)
+            #     qc.cx(middle - i - 2, middle - i - 1)
+            #     qc.cx(middle + i, middle + i + 1 )
+            #     qc.cx(middle + i + 1, middle + i)
+            # qc.measure([0, self.num_qubits-1], [0, 1])
         elif self._mode == 'dynamic': 
             qc.h(2)
             qc.h(4)
@@ -73,10 +80,10 @@ class CNOTCircuit(QuantumAlgorithm):
 
 
 
-CNOT = CNOTCircuit(8, 'unitary')
-CNOT.construct_circuit()
-from noise import construct_bitflip_noise_model
+cnot = CNOTCircuit(7, 'unitary')
+cnot.construct_circuit()
+# cnot._circuit.draw(output='mpl')
 noise_model = construct_bitflip_noise_model(0.01,0.01,0.01)
-CNOT.add_noise_model(noise_model)
-CNOT.show_noise_effect(1000)
+cnot.add_noise_model(noise_model)
+cnot.show_noise_effect(1000)
 plt.show()
