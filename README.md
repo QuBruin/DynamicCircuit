@@ -138,7 +138,36 @@ Tthe output of show_syndrome_table() for the above three qubit repetition code i
 
 # Quantum remote dynamic CNOT
 
+We implemented the Remote CNOT gate both dynamically and using traditional unitary gates. The comparison is shown below
 
+<img src="Figures/Remote_CNOT.png" alt="alt text" width="700"> 
+
+```python
+x = list(range(6,28))
+x = generate_evens_input(29)
+y_unitary = []
+y_dynamic = []
+shots = 10000
+noise = construct_bitflip_noise_model(0.01,0.01,0.01)
+for value in x:
+    cnot = CNOTCircuit(value, 'dynamic_general')
+    cnot.construct_circuit()
+    cnot.add_noise_model(noise)
+    y_dynamic.append(cnot.calculate_fideility(shots, ['11']))
+    cnot = CNOTCircuit(value, 'unitary')
+    cnot.construct_circuit()
+    cnot.add_noise_model(noise)
+    y_unitary.append(cnot.calculate_fideility(shots, ['11']))
+y_unitary = np.array(y_unitary)
+y_dynamic = np.array(y_dynamic)
+plt.plot(x, y_unitary/shots, label = 'unitary')
+plt.plot(x, y_dynamic/shots, label = 'dynamic')
+plt.xlabel('num_of_qubits')
+plt.ylabel('Teleported gate fidelity')
+plt.legend()
+plt.savefig('Remote_CNOT.png', dpi=300)
+```
+ 
 
 # Reference
 
