@@ -185,7 +185,7 @@ We achieve equivalent results with a 33% reduction in CNOT gates.
 
 ## Examples
 
-```
+```py
 from Dynamic_2qUnitary import Dynamic2Q
 import numpy as np
 from qiskit.quantum_info import random_statevector
