@@ -25,10 +25,25 @@ def construct_bitflip_noise_model(p_reset, p_meas, p_gate1):
     noise_bit_flip = NoiseModel()
     noise_bit_flip.add_all_qubit_quantum_error(error_reset, "reset")
     noise_bit_flip.add_all_qubit_quantum_error(error_meas, "measure")
-    noise_bit_flip.add_all_qubit_quantum_error(error_gate1, ["u1", "u2", "u3"])
+    noise_bit_flip.add_all_qubit_quantum_error(error_gate1, ["h"])
     noise_bit_flip.add_all_qubit_quantum_error(error_gate2, ["cx"])
 
     return noise_bit_flip
+
+
+
+def construct_gate_bitflip_noise_model(p_gate):
+
+    error_gate = pauli_error([('X',p_gate), ('I', 1 - p_gate)])
+    error_gate2 = error_gate.tensor(error_gate)
+    # Add errors to noise model
+    noise_bit_flip = NoiseModel()
+    noise_bit_flip.add_all_qubit_quantum_error(error_gate2 , ["cx"])
+
+    return noise_bit_flip
+
+
+
 
 
 
