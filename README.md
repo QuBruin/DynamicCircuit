@@ -226,7 +226,7 @@ Using state teleportation, we initially map two states onto adjacent qubits. We 
 
 ## Evaluation
 
-<img src="Figures/csk_3.png" alt="alt text" width="700"> 
+<img src="Figures/csk_3.png" alt="alt text" width="900"> 
 We achieve equivalent results with a 30% reduction in CNOT gates.
 
 ## Examples
