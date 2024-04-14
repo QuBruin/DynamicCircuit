@@ -180,11 +180,11 @@ We introduce an algorithm for implementing remote 2-qubit unitary operations usi
 
 ## Structure
 
-(image)
+<img src="Figures/csk_1.png" alt="alt text" width="700"> 
 
-The circuit for quantum teleportation can be optimized using the c_if dynamic operation.
+The circuit for quantum teleportation can be optimized using the `c_if` dynamic operation.
 
-(image2)
+<img src="Figures/csk_2.png" alt="alt text" width="700"> 
 
 Using state teleportation, we initially map two states onto adjacent qubits. We then apply a general 2-qubit unitary operation on the adjacent qubits. Finally, we restore the original state's position using the same state teleportation technique.
 
@@ -230,7 +230,11 @@ circuit.show_noise_effect(1000)
 
 # Reference
 
+[1] A. D. Córcoles, Maika Takita, Ken Inoue, Scott Lekuch, Zlatko K. Minev, Jerry M. Chow, and Jay M. Gambetta Phys. Rev. Lett. 127, 100501 – Published 31 August 2021
 
+[2] E.Baumer, V.Tripathi, D.S.Wang, P.Rall, E.H.Chen, S.Majumder, A.Seif and Z.K.Minev, Efficient Long-Range Entanglement using Dynamic Circuits, arXiv:2308.13065 [quant-ph].
+
+[3] L. C. G. Govia, P. Jurcevic, S. T. Merkel, and D. C. McKay. 2022. A randomized benchmarking suite for mid-circuit measurements. https://doi.org/10.48550/ARXIV.2207.04836
 
 
 
