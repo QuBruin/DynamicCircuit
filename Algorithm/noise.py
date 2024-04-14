@@ -63,7 +63,7 @@ def construct_phaseflip_noise_model(p_reset, p_meas, p_gate1):
     noise_phase_flip = NoiseModel()
     noise_phase_flip.add_all_qubit_quantum_error(error_reset, "reset")
     noise_phase_flip.add_all_qubit_quantum_error(error_meas, "measure")
-    noise_phase_flip.add_all_qubit_quantum_error(error_gate1, ["u1", "u2", "u3"])
+    noise_phase_flip.add_all_qubit_quantum_error(error_gate1, ["h"])
     noise_phase_flip.add_all_qubit_quantum_error(error_gate2, ["cz"])
 
     return noise_phase_flip
