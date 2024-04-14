@@ -98,10 +98,31 @@ qec_code.construct_circuit()
 ```
 
 
+
 ## Repetition code
 
 We implement the general repetition quantum error correction code and verify it under different types of quantum noise.
 
+
+```python
+from QEC.repetition import bitfliprepetitioncode
+from Algorithm.noise import construct_bitflip_noise_model
+
+#Initialize a repetiton 
+rep=bitfliprepetitioncode(3)
+#We can add a noise model to the QECcode class 
+noisemode=construct_bitflip_noise_model(0.01,0.01,0.01)
+rep.construct_syndrome_table()
+rep.show_syndrome_table()    
+rep.add_noise_model(noisemode)
+
+#Simulate and show the result with and without quantum noise
+rep.show_noise_effect(shots=100, save=True,savepath="RepetitionNoise.png")
+```
+
+Tthe output of show_syndrome_table() for the above three qubit repetition code is shown as follows:
+
+<img src="Figures/syndromeoutput.png" alt="alt text" width="200"> 
 
 
 # Quantum remote dynamic CNOT
