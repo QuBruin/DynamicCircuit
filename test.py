@@ -12,7 +12,9 @@ if __name__ == '__main__':
     qphe.set_unitary([(HGate(), [0])])
     qphe.construct_circuit()
     qphe.compute_result()
-    qphe.show_measure_all(1000,save=True,savepath="QPE.png")
+    
+    qphe.show_measure_all(1000,save=True,savepath="QPEAll.png")
+    qphe.show_noise_effect(1000,save=True,savepath="QPENoise.png")
     
     #qec_code=QECCode(5,4,2)
     

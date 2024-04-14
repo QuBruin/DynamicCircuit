@@ -15,6 +15,9 @@ class QuantumAlgorithm:
         self._constructed = False
         self._simulator = AerSimulator()
         
+    @property
+    def circuit(self) -> qiskit.QuantumCircuit:
+        return self._circuit
         
     def construct_circuit(self) -> NotImplementedError:
         raise NotImplementedError("Subclasses must implement construct_circuit method.")

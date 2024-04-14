@@ -16,10 +16,6 @@ class QFFT_qiskit(QuantumAlgorithm):
         self._constructed = False
 
     @property
-    def circuit(self) -> qiskit.QuantumCircuit:
-        return self._circuit
-
-    @property
     def inverse(self):
         return self._inverse
 
