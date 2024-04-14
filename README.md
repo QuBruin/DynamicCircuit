@@ -174,7 +174,59 @@ plt.ylabel('Teleported gate fidelity')
 plt.legend()
 plt.savefig('Remote_CNOT.png', dpi=300)
 ```
- 
+
+# Implementation of Dynamic Circuit for Remote 2-Qubit Unitary
+We introduce an algorithm for implementing remote 2-qubit unitary operations using dynamic circuits. Using quantum teleportation, we move states between adjacent qubits with one CNOT gate and one dynamic operation. Our approach reduces the number of CNOT gates by 33% compared to traditional SWAP-based implementation.
+
+## Structure
+
+(image)
+
+The circuit for quantum teleportation can be optimized using the c_if dynamic operation.
+
+(image2)
+
+Using state teleportation, we initially map two states onto adjacent qubits. We then apply a general 2-qubit unitary operation on the adjacent qubits. Finally, we restore the original state's position using the same state teleportation technique.
+
+## Evaluation
+
+(image3)
+We achieve equivalent results with a 33% reduction in CNOT gates.
+
+## Examples
+
+```
+from Dynamic_2qUnitary import Dynamic2Q
+import numpy as np
+from qiskit.quantum_info import random_statevector
+
+# Define the number of qubits
+num_qubits = 10
+
+# Generate a random 2-qubit matrix for testing
+u_2q = np.random.randn(4, 4)
+u_2q, _, _ = np.linalg.svd(u_2q)
+
+# Generate two random states for testing
+psi1 = random_statevector(2).data
+psi2 = random_statevector(2).data
+
+# Create an instance of the Dynamic2Q circuit
+circuit = Dynamic2Q(num_qubits, num_qubits, u_2q, psi1, psi2)
+
+# Run the experiment with 1000 shots
+circuit.construct_circuit()
+circuit.compute_result(1000)
+
+# Run the experiment with 1000 shots and add noise
+circuit.add_noise_model(noise_model)
+circuit.show_noise_effect(1000)
+
+# Output
+# Accuracy of U (|psi1> |000..0> |psi2>) is:  0.9999179096950854
+# Accuracy of noisy U (|psi1> |000..0> |psi2>) is:  0.93779403975291
+```
+
 
 # Reference
 
