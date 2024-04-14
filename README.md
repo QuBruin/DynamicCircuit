@@ -138,10 +138,10 @@ from Algorithm.noise import construct_bitflip_noise_model
 #Initialize a repetiton 
 rep=bitfliprepetitioncode(3)
 #We can add a noise model to the QECcode class 
-noisemode=construct_bitflip_noise_model(0.01,0.01,0.01)
+noisemodel=construct_bitflip_noise_model(0.01,0.01,0.01)
 rep.construct_syndrome_table()
 rep.show_syndrome_table()    
-rep.add_noise_model(noisemode)
+rep.add_noise_model(noisemodel)
 
 #Simulate and show the result with and without quantum noise
 rep.show_noise_effect(shots=100, save=True,savepath="RepetitionNoise.png")
