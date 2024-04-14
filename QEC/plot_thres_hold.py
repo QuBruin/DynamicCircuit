@@ -1,5 +1,5 @@
 from .repetition import bitfliprepetitioncode
-from ..noise import construct_bitflip_noise_model,construct_phaseflip_noise_model
+from Algorithm.noise import construct_bitflip_noise_model,construct_phaseflip_noise_model
 import matplotlib.pyplot as plt
 
 
