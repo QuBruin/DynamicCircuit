@@ -17,7 +17,7 @@ This is the logo for our team.
 
 We are three Master students from UCLA MQST project looking for internship right now.
 
-Please contack us if you are interested.
+Please contact us if you are interested.
 
 
 [UCLA MQST program webpage](https://qst.ucla.edu/)
@@ -28,7 +28,7 @@ Please contack us if you are interested.
 
 # Initialize a virtual environment
 
-You can replicate all our results in this Hackthon on your own computer. Please create a virtual python environment, which we call yalehack, and intall the required package 
+You can replicate all our results in this Hackathon on your own computer. Please create a virtual python environment, which we call yalehack, and install the required package 
 by running the following commands.
 
 
