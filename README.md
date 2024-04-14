@@ -4,13 +4,17 @@ This repository is for the 2024 Yale Quantum Hackathon. Our team consists of UCL
 
 Our challenge topic is provided by IBM, a leading company in quantum computing. Our objective was to identify and implement applications using dynamic quantum circuits, which provide advantages over static quantum circuits. Various quantum algorithms, such as quantum algorithm design, circuit compilation, and error correction, can be optimized by leveraging dynamic circuits, where qubits can be measured and read before the next quantum instruction.
 
+</br>
 We implemented three key demonstrations:
+<br></br>
 
 **1. Repetition Code under Bitflip/Phaseflip Noise Quantum**
 
 **2. Quantum Remote Dynamic CNOT**
 
 **3. Dynamic Circuit for Remote 2-Qubit Unitary**
+<br></br>
+
 
 All circuit models are designed by inheriting the same classes for user accessibility. Our work not only demonstrates the power of dynamic circuits under various noise conditions but also facilitates future development of Quantum Dynamic Circuits with Qiskit by providing a quantum circuit and error correction package.
 
