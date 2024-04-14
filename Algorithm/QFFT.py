@@ -1,4 +1,4 @@
-from QuantumAlgorithm import  QuantumAlgorithm
+from .QuantumAlgorithm import  QuantumAlgorithm
 import qiskit
 from qiskit_aer import AerSimulator
 from qiskit.circuit.library.standard_gates import HGate, U1Gate
@@ -14,10 +14,6 @@ class QFFT_qiskit(QuantumAlgorithm):
         self.num_qubits = num_qubits
         self._inverse = False
         self._constructed = False
-
-    @property
-    def circuit(self) -> qiskit.QuantumCircuit:
-        return self._circuit
 
     @property
     def inverse(self):

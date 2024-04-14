@@ -11,9 +11,13 @@ class QuantumAlgorithm:
     def __init__(self, num_qubits: int) -> None:
         self.num_qubits = num_qubits
         self._noise_model=None
+        self._circuit=None
         self._constructed = False
         self._simulator = AerSimulator()
         
+    @property
+    def circuit(self) -> qiskit.QuantumCircuit:
+        return self._circuit
         
     def construct_circuit(self) -> NotImplementedError:
         raise NotImplementedError("Subclasses must implement construct_circuit method.")
@@ -28,7 +32,7 @@ class QuantumAlgorithm:
         raise NotImplementedError("Subclasses must implement compute_result method.")
     
     
-    def show_measure_all(self, shots: int):
+    def show_measure_all(self, shots: int, save=False,savepath=None):
         if not self._constructed:
             self.construct_circuit()
 
@@ -40,10 +44,13 @@ class QuantumAlgorithm:
         # Returns counts
         counts = result.get_counts(compiled_circuit)
         result = list(counts.keys())[0]
-        return plot_histogram(counts)
+        if save:
+            plot_histogram(counts, filename=savepath)
+            return
+        plot_histogram(counts)
     
     
-    def show_noise_effect(self, shots: int):
+    def show_noise_effect(self, shots: int, save=False,savepath=None):
         if not self._constructed:
             self.construct_circuit()
 
@@ -64,14 +71,28 @@ class QuantumAlgorithm:
         # Returns accurate counts
         counts = result.get_counts(compiled_circuit)
         result = list(counts.keys())[0]        
+        if save:
+            plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect", filename=savepath)
+            return
 
-        
-        return plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect")
-    
+        plot_histogram([counts_noisy, counts], legend=['Noisy result', 'Accurate result'], color=['blue', 'red'], title="Show noise effect")
+
+
 
     
     def add_noise_model(self,noisemodel:NoiseModel):
         self._noise_model=noisemodel
+        
+        
+    def get_gate_nums(self):
+        pass
+    
+    def get_circuit_depth(self):
+        pass
+    
+    
+        
+    
         
         
         
