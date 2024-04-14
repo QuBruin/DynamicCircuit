@@ -147,7 +147,7 @@ Tthe output of show_syndrome_table() for the above three qubit repetition code i
 
 We implemented the Remote CNOT gate both dynamically and using traditional unitary gates. The unitary swap gate based CNOT is very common. Here we attach the diagram of dynamic remote CNOT below. 
 
-<img src="Figures/Remote_CNOT.png" alt="alt text" width="700"> 
+<img src="Figures/remote_cnot.png" alt="alt text" width="700"> 
 
 Under different bit flip and phase flip noise model, we observe a better outcome fidelity with dynamically implemented Remote CNOT gate.The comparison is shown below:
 
