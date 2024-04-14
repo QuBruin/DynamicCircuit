@@ -19,7 +19,6 @@ All circuit models are designed by inheriting the same classes for user accessib
 # Team: QuBruin
 
 <img src="Figures/Logo.png" alt="alt text" width="800"> 
-This is the logo for our team.
 
 **Zhuoyang Ye, Department of Physics and Astronomy, UCLA**
 
